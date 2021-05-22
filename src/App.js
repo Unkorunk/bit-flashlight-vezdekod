@@ -26,9 +26,12 @@ function App() {
             } else {
                 setBitIndex(bitIndex + 1)
             }
-            bridge.send("VKWebAppFlashSetLevel", {"level": bits[bitIndex] ? 1 : 0})
         }, 1000);
     });
+
+    useEffect(() => {
+        bridge.send("VKWebAppFlashSetLevel", {"level": bits[bitIndex] ? 1 : 0})
+    }, [bitIndex])
 
     return (
         <AppRoot>
