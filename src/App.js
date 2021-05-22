@@ -14,6 +14,7 @@ function App() {
 
     useEffect(() => {
         bridge.subscribe((e) => {
+            console.log("test func", e)
             if (e.detail.type === "VKWebAppViewHide") {
                 setBits([false, false, false, false, false, false, false, false]);
                 bridge.send("VKWebAppFlashSetLevel", {"level": 0})
