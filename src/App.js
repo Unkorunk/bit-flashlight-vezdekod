@@ -13,18 +13,6 @@ function App() {
     const [bitIndex, setBitIndex] = useState(-1)
 
     useEffect(() => {
-        bridge.subscribe((e) => {
-            if (e.detail.type === "VKWebAppViewHide") {
-                setBits([false, false, false, false, false, false, false, false]);
-                bridge.send("VKWebAppFlashSetLevel", {"level": 0})
-            }
-        })
-
-        window.addEventListener("beforeunload", function(e) {
-            setBits([false, false, false, false, false, false, false, false]);
-            bridge.send("VKWebAppFlashSetLevel", {"level": 0})
-        });
-
         setTimeout(() => {
             if (bitIndex + 1 >= bits.length) {
                 setBitIndex(0)
