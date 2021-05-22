@@ -8,6 +8,12 @@ import "@vkontakte/vkui/dist/vkui.css";
 import {Icon24CheckBoxOff, Icon24CheckBoxOn} from "@vkontakte/icons";
 import bridge from '@vkontakte/vk-bridge';
 
+bridge.subscribe((e) => {
+    if (e.detail.type === "VKWebAppViewHide") {
+        bridge.send("VKWebAppFlashSetLevel", {"level": 0})
+    }
+})
+
 function App() {
     const [bits, setBits] = useState([false, false, false, false, false, false, false, false]);
     const [bitIndex, setBitIndex] = useState(-1)
