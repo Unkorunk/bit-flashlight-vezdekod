@@ -10,17 +10,16 @@ import bridge from '@vkontakte/vk-bridge';
 
 function App() {
     const [bits, setBits] = useState([false, false, false, false, false, false, false, false]);
-    const [bitIndex, setBitIndex] = useState(0)
+    const [bitIndex, setBitIndex] = useState(-1)
 
     useEffect(() => {
         setTimeout(() => {
-            console.log(1234)
-            bridge.send("VKWebAppFlashSetLevel", {"level": bits[bitIndex] ? 1 : 0})
             if (bitIndex + 1 >= bits.length) {
                 setBitIndex(0)
             } else {
                 setBitIndex(bitIndex + 1)
             }
+            bridge.send("VKWebAppFlashSetLevel", {"level": bits[bitIndex] ? 1 : 0})
         }, 1000);
     });
 
